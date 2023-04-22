@@ -1,0 +1,18 @@
+.sidebarNav {
+  min-height: 100vh;
+}
+
+.menuNav {
+  min-height: calc(100% - 32px);
+}
+
+.main {
+  width: 100%;
+}
+
+.content {
+  background-color: #ffffff;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 1rem;
+}
