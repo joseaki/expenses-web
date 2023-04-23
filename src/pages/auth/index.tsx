@@ -14,6 +14,8 @@ const Auth = () => {
     if (error) {
       return console.log(error);
     }
+    const token = await result?.user.getIdToken();
+    document.cookie = `token=${token}; path=/`;
     return router.push('/');
   };
 

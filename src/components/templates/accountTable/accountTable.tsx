@@ -11,21 +11,14 @@ const AccountTable = (props: IAccountTable) => {
     {
       title: 'Name',
       dataIndex: 'name',
-      sorter: true,
-      sortDirections: ['descend', 'ascend'],
     },
     {
       title: 'Initial value',
       dataIndex: 'initialValue',
-      defaultSortOrder: 'descend',
-      sorter: true,
-      sortDirections: ['descend', 'ascend'],
     },
     {
       title: 'Currency',
       dataIndex: 'currency',
-      sorter: true,
-      sortDirections: ['descend', 'ascend'],
     },
     {
       title: 'Color',

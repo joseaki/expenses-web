@@ -7,9 +7,7 @@ export interface IAccount {
   userId: string;
 }
 
-export interface IAccountResponse extends IAccount {
-  key: React.Key;
-}
+export type IAccountResponse = Omit<IAccount, 'userId'>;
 
 export type IAccountUpdate = Omit<IAccount, 'currency' | 'userId'>;
 
