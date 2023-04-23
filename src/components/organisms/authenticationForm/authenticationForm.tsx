@@ -8,7 +8,6 @@ const AuthenticationForm = (props: IAuthenticationForm) => {
       layout="vertical"
       labelCol={{ span: 24 }}
       wrapperCol={{ span: 24 }}
-      style={{ maxWidth: 600 }}
       onFinish={props.onFinish}
       autoComplete="off"
       disabled={props.loading}

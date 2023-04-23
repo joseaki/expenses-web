@@ -28,7 +28,7 @@ const Auth = () => {
   return (
     <Col span={24}>
       <Row justify="center" align="middle" style={{ height: '100%' }}>
-        <Col span={8} sm={12} xs={22}>
+        <Col span={4} xs={22} sm={12} lg={6}>
           <Title className={styles.textCenter}>Sign Up</Title>
           <AuthenticationForm onFinish={onFinish} buttonText="Signup" loading={loading} />
           <Link href="/auth">
