@@ -1,5 +1,5 @@
-import { PropsWithChildren, useState } from "react";
-import { Layout as AntLayout, Button, Menu, MenuProps, Space } from "antd";
+import { PropsWithChildren, useState } from 'react';
+import { Layout as AntLayout, Button, Menu, MenuProps, Space } from 'antd';
 import {
   AppstoreOutlined,
   ContainerOutlined,
@@ -8,21 +8,22 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
-} from "@ant-design/icons";
-import styles from "./layout.module.css";
-import Link from "next/link";
-import { useRouter } from "next/router";
+} from '@ant-design/icons';
+import styles from './layout.module.css';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useAuth } from 'src/hooks/useAuth';
 
 const { Header, Footer, Sider, Content } = AntLayout;
 
-type MenuItem = Required<MenuProps>["items"][number];
+type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
   label: React.ReactNode,
   link: string,
   icon?: React.ReactNode,
   children?: MenuItem[],
-  type?: "group"
+  type?: 'group'
 ): MenuItem {
   return {
     key: link,
@@ -34,14 +35,20 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("Dashboard", "/", <PieChartOutlined />),
-  getItem("Accounts", "/account", <DesktopOutlined />),
-  getItem("Transactions", "/transaction", <ContainerOutlined />),
+  getItem('Dashboard', '/', <PieChartOutlined />),
+  getItem('Accounts', '/account', <DesktopOutlined />),
+  getItem('Transactions', '/transaction', <ContainerOutlined />),
 ];
 
 export const Layout = (props: PropsWithChildren) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { route } = useRouter();
+  const { revokeToken } = useAuth();
+  const { route, push } = useRouter();
+
+  const logout = () => {
+    revokeToken();
+    push('/auth');
+  };
 
   return (
     <AntLayout>
@@ -56,10 +63,12 @@ export const Layout = (props: PropsWithChildren) => {
             height: 32,
             margin: 16,
           }}
-        />
+        >
+          <Button onClick={logout}>Salir</Button>
+        </div>
         <Menu
           className={styles.menuNav}
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={['1']}
           selectedKeys={[route]}
           mode="inline"
           items={items}

@@ -4,4 +4,6 @@ export interface IAuthentication {
 }
 export interface IAuthenticationForm {
   onFinish?: (data: IAuthentication) => void;
+  buttonText?: string;
+  loading: boolean;
 }

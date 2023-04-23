@@ -14,7 +14,7 @@ import {
 export const getTransactionsSSR = async (
   token: string
 ): Promise<IResponsePaginated<ITransactionResponse>> => {
-  const url = `${process.env.NEXT_PUBLIC_TRANSACTION_URL}/api/transaction`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/transactions/api/transaction`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {

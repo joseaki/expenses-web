@@ -8,7 +8,7 @@ import {
 } from 'src/interfaces/Response.interface';
 
 export const getAccountsSSR = async (token: string): Promise<IResponseList<IAccountResponse>> => {
-  const url = `${process.env.NEXT_PUBLIC_ACCOUNT_URL}/api/account`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/accounts/api/account`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {

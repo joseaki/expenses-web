@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 
 const transactionInstance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_TRANSACTION_URL}/api`,
+  baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/transactions/api`,
 });
 
 transactionInstance.interceptors.request.use(
