@@ -8,7 +8,7 @@ export const signIn = async (email: string, password: string) => {
     error = null;
   try {
     result = await signInWithEmailAndPassword(auth, email, password);
-  } catch (e) {
+  } catch (e: any) {
     error = e;
   }
 

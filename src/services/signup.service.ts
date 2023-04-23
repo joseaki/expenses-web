@@ -8,7 +8,7 @@ export const signUp = async (email: string, password: string) => {
     error = null;
   try {
     result = await createUserWithEmailAndPassword(auth, email, password);
-  } catch (e) {
+  } catch (e: any) {
     error = e;
   }
 
