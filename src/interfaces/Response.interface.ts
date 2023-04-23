@@ -11,3 +11,11 @@ export interface IResponsePaginated<T> {
     items: T[];
   };
 }
+
+export interface ICommonCreateResponse {
+  id: string;
+}
+
+export interface ICommonDeleteResponse {
+  deleted: boolean;
+}

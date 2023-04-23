@@ -15,11 +15,11 @@ export async function middleware(request: NextRequest) {
 
   const verification = await verifyToken(token.value);
 
-  if (!isAuthRoute && !verification.data.authenticated) {
+  if (!isAuthRoute && !verification.data?.authenticated) {
     return redirectToAuthUrl(request);
   }
   if (isAuthRoute) {
-    if (!verification.data.authenticated) {
+    if (!verification.data?.authenticated) {
       return NextResponse.next();
     }
     return redirectToMainUrl(request);

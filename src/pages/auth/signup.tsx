@@ -1,6 +1,6 @@
 import { Typography, Col, Row } from 'antd';
 import { useRouter } from 'next/router';
-import AuthenticationForm from 'src/components/templates/authenticationForm/authenticationForm';
+import AuthenticationForm from 'src/components/organisms/authenticationForm/authenticationForm';
 import { ILoginInputs } from 'src/interfaces/Pages/auth.interface';
 // import { signUp } from 'src/services/signup.service';
 import styles from 'src/styles/Auth.module.css';

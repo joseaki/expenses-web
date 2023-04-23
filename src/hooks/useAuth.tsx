@@ -11,7 +11,6 @@ export const AuthProvider = (props: PropsWithChildren) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
-      console.log(fbUser);
       if (fbUser) {
         const token = await fbUser.getIdToken();
         document.cookie = `token=${token}; path=/`;
