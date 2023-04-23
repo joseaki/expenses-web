@@ -18,7 +18,7 @@ const useAccount = () => {
 
   const { data } = useQuery({
     queryKey: ['accounts', user?.uid],
-    queryFn: () => getAccounts(user!.uid),
+    queryFn: () => getAccounts(),
     enabled: !!user?.uid,
   });
 
@@ -39,7 +39,6 @@ const useAccount = () => {
       });
     },
     onSuccess: (result, variables, context) => {
-      console.log(context?.uuid);
       queryClient.setQueryData<IResponse<IAccountResponse[]>>(['accounts', user?.uid], (old) => ({
         data:
           old?.data.map((account) =>

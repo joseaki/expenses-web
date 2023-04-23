@@ -7,29 +7,20 @@ import {
   IResponseList,
 } from 'src/interfaces/Response.interface';
 
-export const getAccountsSSR = async (
-  userId: string,
-  token: string
-): Promise<IResponseList<IAccountResponse>> => {
-  const accountList = await accountInstance.get<IResponseList<IAccountResponse>>(
-    `/account/${userId}`,
-    {
-      headers: {
-        Authorization: `bearer ${token}`,
-      },
-    }
-  );
-
-  return accountList.data;
+export const getAccountsSSR = async (token: string): Promise<IResponseList<IAccountResponse>> => {
+  const url = `${process.env.NEXT_PUBLIC_ACCOUNT_URL}/api/account`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `bearer ${token}`,
+    },
+  });
+  return response.json();
 };
 
-export const getAccounts = async (
-  userId: string,
-  token?: string
-): Promise<IResponseList<IAccountResponse>> => {
-  const accountList = await accountInstance.get<IResponseList<IAccountResponse>>(
-    `/account/${userId}`
-  );
+export const getAccounts = async (): Promise<IResponseList<IAccountResponse>> => {
+  const accountList = await accountInstance.get<IResponseList<IAccountResponse>>(`/account`);
 
   return accountList.data;
 };

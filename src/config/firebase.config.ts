@@ -15,8 +15,6 @@ const firebase_app = initializeApp(firebaseConfig);
 
 let analytics;
 if (firebase_app.name && typeof window !== 'undefined') {
-  console.log('firebase', firebase_app.name);
-
   analytics = getAnalytics(firebase_app);
 }
 

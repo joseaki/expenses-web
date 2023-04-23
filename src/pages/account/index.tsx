@@ -63,8 +63,8 @@ const Account = () => {
   return (
     <Layout>
       {contextHolder}
-      <AccountTable accounts={accounts} onDelete={handleDelete} onEdit={handleEdit} />
       <AccountModal onFinish={create} />
+      <AccountTable accounts={accounts} onDelete={handleDelete} onEdit={handleEdit} />
       <AccountEditModal isOpen={!!editAccount} onFinish={edit} initialData={editAccount} />
     </Layout>
   );
@@ -76,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (props) => {
 
   await queryClient.prefetchQuery({
     queryKey: ['accounts', userId],
-    queryFn: () => getAccountsSSR(userId, token),
+    queryFn: () => getAccountsSSR(token),
   });
 
   return {

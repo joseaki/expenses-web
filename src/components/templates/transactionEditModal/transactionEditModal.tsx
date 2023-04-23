@@ -1,15 +1,15 @@
 import { PropsWithChildren, useRef, useState } from 'react';
 import { FormInstance, Modal } from 'antd';
-import { IAccountEditModal } from './accountEditModal.types';
-import { IAccount } from 'src/interfaces/Account.interface';
-import AccountEditForm from 'src/components/organisms/accountEditForm/accountEditForm';
+import { ITransactionEditModal } from './transactionEditModal.types';
+import { ITransaction } from 'src/interfaces/Transaction.interface';
+import TransactionEditForm from 'src/components/organisms/transactionEditForm/transactionEditForm';
 
-const AccountEditModal = (props: PropsWithChildren<IAccountEditModal>) => {
+const TransactionEditModal = (props: PropsWithChildren<ITransactionEditModal>) => {
   const { onFinish, isOpen, initialData } = props;
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<FormInstance | null>(null);
 
-  const handleOnFinish = async (data: Omit<IAccount, 'uuid' | 'userId' | 'currency'>) => {
+  const handleOnFinish = async (data: Omit<ITransaction, 'uuid'>) => {
     if (onFinish) {
       setIsLoading(true);
       const isOk = await onFinish({ uuid: initialData?.uuid ?? '', ...data });
@@ -22,15 +22,19 @@ const AccountEditModal = (props: PropsWithChildren<IAccountEditModal>) => {
 
   const handleCancel = () => {
     if (onFinish) {
-      formRef.current?.resetFields();
-      formRef.current = null;
       onFinish();
     }
   };
 
   return (
-    <Modal title="Edit account" open={isOpen} onCancel={handleCancel} destroyOnClose footer={null}>
-      <AccountEditForm
+    <Modal
+      title="Edit transaction"
+      open={isOpen}
+      onCancel={handleCancel}
+      footer={null}
+      destroyOnClose
+    >
+      <TransactionEditForm
         formRef={formRef}
         onFinish={handleOnFinish}
         isLoading={isLoading}
@@ -40,4 +44,4 @@ const AccountEditModal = (props: PropsWithChildren<IAccountEditModal>) => {
   );
 };
 
-export default AccountEditModal;
+export default TransactionEditModal;

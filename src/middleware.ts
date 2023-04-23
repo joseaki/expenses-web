@@ -14,8 +14,6 @@ export async function middleware(request: NextRequest) {
   }
 
   const verification = await verifyToken(token.value);
-  console.log(isAuthRoute, verification.data?.authenticated);
-
   if (!isAuthRoute && !verification.data?.authenticated) {
     return redirectToAuthUrl(request);
   }

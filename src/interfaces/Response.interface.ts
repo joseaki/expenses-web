@@ -8,6 +8,8 @@ export interface IResponseList<T> {
 
 export interface IResponsePaginated<T> {
   data: {
+    count: number;
+    page: number;
     items: T[];
   };
 }

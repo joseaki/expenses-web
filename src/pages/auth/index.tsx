@@ -3,9 +3,8 @@ import { useRouter } from 'next/router';
 import { signIn } from 'src/services/signin.service';
 import AuthenticationForm from 'src/components/organisms/authenticationForm/authenticationForm';
 import { ILoginInputs } from 'src/interfaces/Pages/auth.interface';
-import styles from 'src/styles/Auth.module.css';
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title } = Typography;
 
 const Auth = () => {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import { Button, Space, Table } from 'antd';
+import { Button, Space, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { IAccountResponse } from 'src/interfaces/Account.interface';
 import { IAccountTable } from './accountTable.types';
@@ -22,7 +22,9 @@ const AccountTable = (props: IAccountTable) => {
     },
     {
       title: 'Color',
-      dataIndex: 'color',
+      render: (account: IAccountResponse) => (
+        <Tag color={account.color ?? undefined}>{account.color ?? ''}</Tag>
+      ),
     },
     {
       title: '',

@@ -1,10 +1,10 @@
 import { PropsWithChildren, useRef, useState } from 'react';
 import { Button, FormInstance, Modal } from 'antd';
-import AccountForm from 'src/components/organisms/accountForm/accountForm';
-import { IAccountModal } from './accountCreateModal.types';
-import { IAccount } from 'src/interfaces/Account.interface';
+import TransactionForm from 'src/components/organisms/transactionForm/transactionForm';
+import { ITransactionModal } from './transactionCreateModal.types';
+import { ITransactionCreate } from 'src/interfaces/Transaction.interface';
 
-const AccountModal = (props: PropsWithChildren<IAccountModal>) => {
+const TransactionModal = (props: PropsWithChildren<ITransactionModal>) => {
   const { onFinish } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ const AccountModal = (props: PropsWithChildren<IAccountModal>) => {
     setIsModalOpen(false);
   };
 
-  const handleOnFinish = async (data: Omit<IAccount, 'uuid' | 'userId'>) => {
+  const handleOnFinish = async (data: ITransactionCreate) => {
     if (onFinish) {
       setIsLoading(true);
       const isOk = await onFinish(data);
@@ -38,22 +38,22 @@ const AccountModal = (props: PropsWithChildren<IAccountModal>) => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        New Account
+        New Transaction
       </Button>
       {isModalOpen ? (
         <Modal
-          title="Create account"
+          title="Create transaction"
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
           footer={null}
           destroyOnClose
         >
-          <AccountForm formRef={formRef} onFinish={handleOnFinish} isLoading={isLoading} />
+          <TransactionForm formRef={formRef} onFinish={handleOnFinish} isLoading={isLoading} />
         </Modal>
       ) : null}
     </>
   );
 };
 
-export default AccountModal;
+export default TransactionModal;
