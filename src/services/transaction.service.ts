@@ -14,7 +14,7 @@ import {
 export const getTransactionsSSR = async (
   token: string
 ): Promise<IResponsePaginated<ITransactionResponse>> => {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/transactions/api/transaction`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/transactions/api/`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -32,7 +32,7 @@ export const getTransactions = async (
   sortType = undefined
 ): Promise<IResponsePaginated<ITransactionResponse>> => {
   const transactionList = await transactionInstance.get<IResponsePaginated<ITransactionResponse>>(
-    `/transaction`,
+    `/`,
     { params: { pageNumber, rowsPerPage, orderField, sortType } }
   );
 
@@ -43,7 +43,7 @@ export const createTransaction = async (
   transaction: ITransactionCreate
 ): Promise<IResponse<ICommonCreateResponse>> => {
   const transactionCreated = await transactionInstance.post<IResponse<ICommonCreateResponse>>(
-    '/transaction',
+    '/',
     transaction
   );
 
@@ -55,7 +55,7 @@ export const updateTransaction = async (
 ): Promise<IResponse<ITransactionUpdate>> => {
   const { uuid, ...rest } = transaction;
   const transactionUpdated = await transactionInstance.patch<IResponse<ITransactionUpdate>>(
-    `/transaction/${uuid}`,
+    `/${uuid}`,
     rest
   );
 
@@ -66,7 +66,7 @@ export const deleteTransaction = async (
   transactionId: string
 ): Promise<IResponse<ICommonDeleteResponse>> => {
   const transactionUpdated = await transactionInstance.delete<IResponse<ICommonDeleteResponse>>(
-    `/transaction/${transactionId}`
+    `/${transactionId}`
   );
 
   return transactionUpdated.data;

@@ -8,7 +8,7 @@ import {
 } from 'src/interfaces/Response.interface';
 
 export const getAccountsSSR = async (token: string): Promise<IResponseList<IAccountResponse>> => {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/accounts/api/account`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/accounts/api`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -20,7 +20,7 @@ export const getAccountsSSR = async (token: string): Promise<IResponseList<IAcco
 };
 
 export const getAccounts = async (): Promise<IResponseList<IAccountResponse>> => {
-  const accountList = await accountInstance.get<IResponseList<IAccountResponse>>(`/account`);
+  const accountList = await accountInstance.get<IResponseList<IAccountResponse>>(`/`);
 
   return accountList.data;
 };
@@ -28,10 +28,7 @@ export const getAccounts = async (): Promise<IResponseList<IAccountResponse>> =>
 export const createAccount = async (
   account: IAccountCreate
 ): Promise<IResponse<ICommonCreateResponse>> => {
-  const accountCreated = await accountInstance.post<IResponse<ICommonCreateResponse>>(
-    '/account',
-    account
-  );
+  const accountCreated = await accountInstance.post<IResponse<ICommonCreateResponse>>('/', account);
 
   return accountCreated.data;
 };
@@ -41,7 +38,7 @@ export const updateAccount = async (
 ): Promise<IResponse<Omit<IAccountUpdate, 'uuid'>>> => {
   const { uuid, ...rest } = account;
   const accountUpdated = await accountInstance.patch<IResponse<Omit<IAccountUpdate, 'uuid'>>>(
-    `/account/${uuid}`,
+    `/${uuid}`,
     rest
   );
 
@@ -52,7 +49,7 @@ export const deleteAccount = async (
   accountId: string
 ): Promise<IResponse<ICommonDeleteResponse>> => {
   const accountUpdated = await accountInstance.delete<IResponse<ICommonDeleteResponse>>(
-    `/account/${accountId}`
+    `/${accountId}`
   );
 
   return accountUpdated.data;
