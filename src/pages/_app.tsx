@@ -34,8 +34,6 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, [Router]);
 
-  console.log('PAGE-----', isLoading);
-
   return (
     <QueryClientProvider client={queryClient}>
       {isLoading ? <Loading /> : null}
