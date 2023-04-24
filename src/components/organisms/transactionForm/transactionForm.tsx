@@ -42,7 +42,7 @@ const TransactionForm = (props: PropsWithChildren<ITransactionForm>) => {
         initialValue={0}
         rules={[{ required: true, message: 'Please input the transaction amount!' }]}
       >
-        <InputNumber ref={amountInputRef} />
+        <InputNumber min={1} ref={amountInputRef} />
       </Form.Item>
 
       <Form.Item
@@ -63,7 +63,7 @@ const TransactionForm = (props: PropsWithChildren<ITransactionForm>) => {
       <Form.Item
         label="Account"
         name="accountId"
-        initialValue={accounts[0].uuid}
+        initialValue={accounts.length > 0 ? accounts[0].uuid : undefined}
         rules={[{ required: true, message: 'Please select an account!' }]}
       >
         <Select
