@@ -37,8 +37,8 @@ export const Layout = (props: PropsWithChildren) => {
   const { revokeToken } = useAuth();
   const { route, push } = useRouter();
 
-  const logout = () => {
-    revokeToken();
+  const logout = async () => {
+    await revokeToken();
     push('/auth');
   };
 
@@ -56,7 +56,7 @@ export const Layout = (props: PropsWithChildren) => {
             margin: 16,
           }}
         >
-          <Button onClick={logout}>Salir</Button>
+          <Button onClick={logout}>Logout</Button>
         </div>
         <Menu
           className={styles.menuNav}
