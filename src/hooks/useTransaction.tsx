@@ -53,7 +53,7 @@ const useTransaction = (page = 1) => {
             break;
           }
         }
-        if (indexToInsert < 0) indexToInsert = value?.data.items.length ?? 0;
+        if (indexToInsert < 0) indexToInsert = value?.data.items?.length ?? 0;
       }
 
       queryClient.setQueryData<IResponsePaginated<ITransactionResponse>>(
