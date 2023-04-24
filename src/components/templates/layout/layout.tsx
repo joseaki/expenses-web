@@ -1,20 +1,12 @@
 import { PropsWithChildren, useState } from 'react';
 import { Layout as AntLayout, Button, Menu, MenuProps, Space } from 'antd';
-import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-} from '@ant-design/icons';
+import { ContainerOutlined, DesktopOutlined, PieChartOutlined } from '@ant-design/icons';
 import styles from './layout.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from 'src/hooks/useAuth';
 
-const { Header, Footer, Sider, Content } = AntLayout;
+const { Sider, Content } = AntLayout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
